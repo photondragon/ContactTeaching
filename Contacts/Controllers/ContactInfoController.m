@@ -72,4 +72,9 @@ UINavigationControllerDelegate>
 	self.imageViewHead.image = image;
 }
 
+- (IBAction)blankTapped:(id)sender {
+	[self.textFieldName resignFirstResponder];
+	[self.textFieldPhone resignFirstResponder];
+}
+
 @end

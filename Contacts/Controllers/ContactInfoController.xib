@@ -14,7 +14,7 @@
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="Tes-rG-JuE">
+        <view contentMode="scaleToFill" id="Tes-rG-JuE" customClass="UIControl">
             <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
@@ -58,6 +58,9 @@
             <nil key="simulatedStatusBarMetrics"/>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <connections>
+                <action selector="blankTapped:" destination="-1" eventType="touchUpInside" id="I0w-pt-S3F"/>
+            </connections>
             <point key="canvasLocation" x="243" y="184"/>
         </view>
     </objects>
