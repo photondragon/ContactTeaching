@@ -21,6 +21,9 @@ UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *textFieldPhone;
 @property (weak, nonatomic) IBOutlet UIImageView *imageViewHead;
 
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (strong, nonatomic) IBOutlet UIControl *contentView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintOfBottom;
 @end
 
 @implementation ContactNewController
@@ -34,9 +37,53 @@ UINavigationControllerDelegate>
 	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel:)];
 	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save:)];
 
-	NSLog(@"%@", [NSString documentsPath]);
+	CGSize contentSize = CGSizeMake(self.scrollView.frame.size.width, 400);
+	self.contentView.frame = CGRectMake(0, 0, contentSize.width, contentSize.height);
+	self.contentView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+	[self.scrollView addSubview:self.contentView];
+	self.scrollView.contentSize = contentSize;
 
 	self.contact = [[ContactInfo alloc] init];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+	[super viewDidAppear:animated];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
+}
+- (void)viewWillDisappear:(BOOL)animated
+{
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillChangeFrameNotification object:nil];
+	[super viewWillDisappear:animated];
+}
+
+- (void)keyboardWillChangeFrame:(NSNotification*)note
+{
+	NSDictionary *userInfo = note.userInfo;
+
+	NSNumber *animationDurationNumber = [userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
+	NSTimeInterval animationDuration = [animationDurationNumber doubleValue];
+
+	NSValue *aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+	CGRect keyboardFrame = [aValue CGRectValue];
+	CGRect keyboardRect = [self.view convertRect:keyboardFrame fromView:nil];//获取键盘坐标，并由屏幕坐标转为view的坐标
+	CGRect containerRect = self.view.bounds;
+	CGFloat bottomDistance = containerRect.size.height - keyboardRect.origin.y;
+
+	if(bottomDistance>0)//弹出键盘
+	{
+		self.constraintOfBottom.constant = bottomDistance;
+		[UIView animateWithDuration:animationDuration animations:^{
+			[self.view layoutIfNeeded];
+		}];
+	}
+	else//收起键盘
+	{
+		self.constraintOfBottom.constant = 0;
+		[UIView animateWithDuration:animationDuration animations:^{
+			[self.view layoutIfNeeded];
+		}];
+	}
 }
 
 - (void)cancel:(id)sender

@@ -10,6 +10,7 @@
 #import "ContactInfoController.h"
 #import "ContactsController.h"
 #import "MyModels.h"
+#import "IDNFoundation.h"
 
 @interface AppDelegate ()
 
@@ -19,6 +20,8 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+	NSLog(@"%@", [NSString documentsPath]);
+
 	CGRect rect = [UIScreen mainScreen].bounds;
 	self.window = [[UIWindow alloc] initWithFrame:rect];
 	self.window.backgroundColor = [UIColor whiteColor];
