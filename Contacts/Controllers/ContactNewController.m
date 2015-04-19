@@ -7,9 +7,7 @@
 //
 
 #import "ContactNewController.h"
-#import "NSString+IDNExtend.h"
-#import "NSData+IDNExtend.h"
-#import "NSDate+IDNExtend.h"
+#import "IDNFoundation.h"
 #import "IDNImagePickerController.h"
 #import "MyModels.h"
 
@@ -91,6 +89,8 @@ UINavigationControllerDelegate>
 	if([imageData writeToDocumentFile:file]==NO)
 		return;
 	
+	[NSFileManager removeDocumentFile:self.contact.headImageUrl];
+
 	self.contact.headImageUrl = file;
 	self.imageViewHead.image = image;
 }

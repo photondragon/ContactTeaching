@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		94BA462E1AE3449800C4112D /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BA462D1AE3449800C4112D /* ImageViewController.m */; };
+		94BA46311AE34F8F00C4112D /* NSFileManager+IDNExtend.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BA46301AE34F8F00C4112D /* NSFileManager+IDNExtend.m */; };
 		94C8EA021ADA05CA008B9ECA /* ContactInfoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94C8EA011ADA05CA008B9ECA /* ContactInfoController.xib */; };
 		94C8EA071ADA1B32008B9ECA /* defaultHead@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94C8EA041ADA1B32008B9ECA /* defaultHead@2x.png */; };
 		94C8EA081ADA1B32008B9ECA /* imageCamera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94C8EA051ADA1B32008B9ECA /* imageCamera@2x.png */; };
@@ -40,6 +42,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		94BA462C1AE3449700C4112D /* ImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageViewController.h; sourceTree = "<group>"; };
+		94BA462D1AE3449800C4112D /* ImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageViewController.m; sourceTree = "<group>"; };
+		94BA462F1AE34F8F00C4112D /* NSFileManager+IDNExtend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+IDNExtend.h"; sourceTree = "<group>"; };
+		94BA46301AE34F8F00C4112D /* NSFileManager+IDNExtend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+IDNExtend.m"; sourceTree = "<group>"; };
+		94BA46321AE354B200C4112D /* IDNFoundation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IDNFoundation.h; sourceTree = "<group>"; };
 		94C8EA011ADA05CA008B9ECA /* ContactInfoController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactInfoController.xib; sourceTree = "<group>"; };
 		94C8EA041ADA1B32008B9ECA /* defaultHead@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "defaultHead@2x.png"; sourceTree = "<group>"; };
 		94C8EA051ADA1B32008B9ECA /* imageCamera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "imageCamera@2x.png"; sourceTree = "<group>"; };
@@ -115,6 +122,9 @@
 				94C8EA0F1ADA22B2008B9ECA /* NSDate+IDNExtend.m */,
 				94C8EA101ADA22B2008B9ECA /* NSString+IDNExtend.h */,
 				94C8EA111ADA22B2008B9ECA /* NSString+IDNExtend.m */,
+				94BA462F1AE34F8F00C4112D /* NSFileManager+IDNExtend.h */,
+				94BA46301AE34F8F00C4112D /* NSFileManager+IDNExtend.m */,
+				94BA46321AE354B200C4112D /* IDNFoundation.h */,
 			);
 			path = MyFoundation;
 			sourceTree = "<group>";
@@ -211,6 +221,8 @@
 				94FD40EE1AC7BC08003FC49A /* ContactInfoController.h */,
 				94FD40EF1AC7BC08003FC49A /* ContactInfoController.m */,
 				94C8EA011ADA05CA008B9ECA /* ContactInfoController.xib */,
+				94BA462C1AE3449700C4112D /* ImageViewController.h */,
+				94BA462D1AE3449800C4112D /* ImageViewController.m */,
 				94FD40F11AC7CE29003FC49A /* ContactsController.h */,
 				94FD40F21AC7CE29003FC49A /* ContactsController.m */,
 			);
@@ -326,10 +338,12 @@
 				94C8EA161ADA22B2008B9ECA /* NSDate+IDNExtend.m in Sources */,
 				94FD40C61AC7AA3F003FC49A /* AppDelegate.m in Sources */,
 				94FD40F31AC7CE29003FC49A /* ContactsController.m in Sources */,
+				94BA462E1AE3449800C4112D /* ImageViewController.m in Sources */,
 				94FD40F01AC7BC08003FC49A /* ContactInfoController.m in Sources */,
 				94D6BA3D1ADA3934001C2B24 /* MyModels.m in Sources */,
 				94FD40C31AC7AA3F003FC49A /* main.m in Sources */,
 				94C8EA181ADA22B2008B9ECA /* IDNImagePickerController.m in Sources */,
+				94BA46311AE34F8F00C4112D /* NSFileManager+IDNExtend.m in Sources */,
 				94C8EA171ADA22B2008B9ECA /* NSString+IDNExtend.m in Sources */,
 				94FD40EB1AC7AA9D003FC49A /* ContactInfo.m in Sources */,
 				94D6BA411ADA4B70001C2B24 /* ContactNewController.m in Sources */,

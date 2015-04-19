@@ -11,7 +11,7 @@
 #import "ContactInfoController.h"
 #import "MyModels.h"
 #import "ContactNewController.h"
-#import "NSString+IDNExtend.h"
+#import "IDNFoundation.h"
 
 @interface ContactsController ()
 //@property(nonatomic,strong)ContactManage* contactManager;
@@ -102,6 +102,9 @@
     if (editingStyle == UITableViewCellEditingStyleDelete)
 	{
 		ContactInfo* info = [[MyModels contactManager] contactAtIndex:indexPath.row];
+
+		[NSFileManager removeDocumentFile:info.headImageUrl];
+
 		[[MyModels contactManager] delContact:info];
 
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];

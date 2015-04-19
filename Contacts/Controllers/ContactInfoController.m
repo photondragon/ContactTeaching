@@ -7,10 +7,9 @@
 //
 
 #import "ContactInfoController.h"
-#import "NSString+IDNExtend.h"
-#import "NSData+IDNExtend.h"
-#import "NSDate+IDNExtend.h"
 #import "IDNImagePickerController.h"
+#import "ImageViewController.h"
+#import "IDNFoundation.h"
 
 @interface ContactInfoController ()
 <UIImagePickerControllerDelegate,
@@ -54,9 +53,18 @@ UINavigationControllerDelegate>
 }
 
 - (IBAction)btnImageClicked:(id)sender {
-	UIImagePickerController* picker = [[IDNImagePickerController alloc] init];
-	picker.delegate = self;
-	[self presentViewController:picker animated:YES completion:nil];
+	if(self.editing)
+	{
+		UIImagePickerController* picker = [[IDNImagePickerController alloc] init];
+		picker.delegate = self;
+		[self presentViewController:picker animated:YES completion:nil];
+	}
+	else
+	{
+		ImageViewController* c = [[ImageViewController alloc] init];
+		c.imagePath = [NSString documentsPathWithFileName:self.contact.headImageUrl];
+		[self.navigationController pushViewController:c animated:YES];
+	}
 }
 
 - (void)setContact:(ContactInfo *)contact
@@ -87,7 +95,9 @@ UINavigationControllerDelegate>
 	NSData* imageData = UIImageJPEGRepresentation(image, 0.8);
 	if([imageData writeToDocumentFile:file]==NO)
 		return;
-	
+
+	[NSFileManager removeDocumentFile:self.contact.headImageUrl];
+
 	self.contact.headImageUrl = file;
 	self.imageViewHead.image = image;
 }
