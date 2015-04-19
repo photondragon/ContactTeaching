@@ -31,6 +31,26 @@ UINavigationControllerDelegate>
 	self.edgesForExtendedLayout = 0;
 
 	NSLog(@"%@", [NSString documentsPath]);
+
+	self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated
+{
+	[super setEditing:editing animated:animated];
+	if(editing)
+	{
+		self.textFieldName.enabled = YES;
+		self.textFieldPhone.enabled = YES;
+	}
+	else
+	{
+		self.contact.name = self.textFieldName.text;
+		self.contact.phone = self.textFieldPhone.text;
+
+		self.textFieldName.enabled = NO;
+		self.textFieldPhone.enabled = NO;
+	}
 }
 
 - (IBAction)btnImageClicked:(id)sender {
