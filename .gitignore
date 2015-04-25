@@ -23,5 +23,6 @@ Thumbs.db
 ~$*.xls*
 ~$*.doc*
 xcuserdata/
+xcshareddata/
 nbproject/
 nbproject/private/
