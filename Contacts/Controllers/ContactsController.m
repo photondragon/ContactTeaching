@@ -12,6 +12,7 @@
 #import "MyModels.h"
 #import "ContactNewController.h"
 #import "IDNFoundation.h"
+#import "ContactCell.h"
 
 @interface ContactsController ()
 //@property(nonatomic,strong)ContactManage* contactManager;
@@ -31,6 +32,8 @@
 //	}
 
 	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addContact:)];
+
+	[self.tableView registerNib:[UINib nibWithNibName:@"ContactCell" bundle:nil] forCellReuseIdentifier:@"ContactCell"];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -60,22 +63,20 @@
     return 1;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	return 80;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [MyModels contactManager].count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-
-	UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"UITableViewCellStyleValue1"];
+    ContactCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ContactCell" forIndexPath:indexPath];
 
 	ContactInfo* contact = [[MyModels contactManager] contactAtIndex:indexPath.row];
-	cell.textLabel.text = contact.name;
-	cell.detailTextLabel.text = contact.phone;
-	if(contact.headImageUrl.length)
-		cell.imageView.image = [UIImage imageWithContentsOfFile:[NSString documentsPathWithFileName:contact.headImageUrl]];
-	else
-		cell.imageView.image = [UIImage imageNamed:@"defaultHead.png"];
+	cell.contact = contact;
 
     return cell;
 }
