@@ -68,7 +68,7 @@ UINavigationControllerDelegate>
 }
 
 - (void)setContact:(ContactInfo *)contact
-{NSLayoutAttribute
+{
 	_contact = contact;
 
 	[self view];

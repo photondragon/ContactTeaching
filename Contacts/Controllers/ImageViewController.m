@@ -9,32 +9,39 @@
 #import "ImageViewController.h"
 
 @interface ImageViewController ()
-
-@property(nonatomic,strong) UIImageView* imageView;
+<UIScrollViewDelegate>
+{
+	UIScrollView* scrollView;
+	UIImageView* imageView;
+}
 
 @end
 
 @implementation ImageViewController
+
+- (void)loadView
+{
+	imageView = [[UIImageView alloc] init];
+	imageView.backgroundColor = [UIColor darkGrayColor];
+
+	scrollView = [[UIScrollView alloc] init];
+	scrollView.backgroundColor = [UIColor grayColor];
+	scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+	scrollView.delegate = self;
+	[scrollView addSubview:imageView];
+
+	UIView* view = [[UIView alloc] init];
+	view.backgroundColor = [UIColor blueColor];
+	[view addSubview:scrollView];
+
+	self.view = view;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
 	self.edgesForExtendedLayout = 0;
 	self.title = @"查看图片";
-
-	CGSize framesize = self.view.frame.size;
-
-	self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 20, framesize.width-40, framesize.height-40)];
-//	self.imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
-	self.imageView.backgroundColor = [UIColor darkGrayColor];
-	self.imageView.contentMode = UIViewContentModeScaleAspectFit;
-	self.imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-	[self.view addSubview:self.imageView];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)setImagePath:(NSString *)imagePath
@@ -43,10 +50,95 @@
 
 	[self view];
 
-	if (imagePath.length)
-		self.imageView.image = [[UIImage alloc] initWithContentsOfFile:imagePath];
+	UIImage* image = [[UIImage alloc] initWithContentsOfFile:imagePath];
+	imageView.image = image;
+
+	CGSize imagesize = image.size;
+	imageView.frame = CGRectMake(0, 0, imagesize.width, imagesize.height);
+
+	scrollView.contentSize = imagesize;
+
+	[self recalcDisplayInfo];
+}
+
+- (void)viewDidLayoutSubviews
+{
+	[super viewDidLayoutSubviews];
+	[self recalcDisplayInfo];
+}
+
+- (void)recalcDisplayInfo
+{
+	CGSize containerSize = scrollView.frame.size;
+	CGSize imagesize = imageView.image.size;
+
+	if (containerSize.width<=0 || containerSize.height<=0 ||
+		imagesize.width <=0 || imagesize.height<=0) {
+		scrollView.minimumZoomScale = 1;
+		scrollView.maximumZoomScale = 1;
+	}
 	else
-		self.imageView.image = nil;
+	{
+		CGFloat hRatio = containerSize.width/imagesize.width;
+		CGFloat vRatio = containerSize.height/imagesize.height;
+
+		CGFloat minRation = hRatio < vRatio ? hRatio : vRatio;
+		CGFloat maxRation = hRatio > vRatio ? hRatio : vRatio;
+
+		CGFloat minScale = minRation;
+		CGFloat maxScale = maxRation;
+
+		if (minScale>1.0)
+			minScale = 1;
+		if (maxScale<1)
+			maxScale = 1;
+
+		scrollView.minimumZoomScale = minScale;
+		scrollView.maximumZoomScale = maxScale;
+
+		CGFloat scale = scrollView.zoomScale;
+		if(scale<minScale)
+			scale = minScale;
+		else if(scale>maxScale)
+			scale = maxScale;
+		scrollView.zoomScale = scale;
+		
+		[self centerContentView];
+	}
+}
+
+- (void)centerContentView
+{
+	CGSize containerSize = scrollView.frame.size;
+	CGSize imagesize = imageView.image.size;
+	CGFloat scale = scrollView.zoomScale;
+	CGSize imageViewSize;
+	imageViewSize.width = imagesize.width*scale;
+	imageViewSize.height = imagesize.height*scale;
+
+	CGPoint padding;
+	if(imageViewSize.width < containerSize.width)
+		padding.x = (containerSize.width-imageViewSize.width)/2;
+	else
+		padding.x = 0;
+
+	if(imageViewSize.height < containerSize.height)
+		padding.y = (containerSize.height-imageViewSize.height)/2;
+	else
+		padding.y = 0;
+
+	imageView.center = CGPointMake(padding.x+imageViewSize.width/2, padding.y+imageViewSize.height/2);
+}
+
+- (UIView*)viewForZoomingInScrollView:(UIScrollView *)scrollView
+{
+	return imageView;
+}
+
+//每当zoomScale改变时，会被调用
+- (void)scrollViewDidZoom:(UIScrollView *)scrollView
+{
+	[self centerContentView];
 }
 
 @end
