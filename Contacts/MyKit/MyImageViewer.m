@@ -151,6 +151,43 @@
 	imageView.center = CGPointMake(padding.x+imageViewSize.width/2, padding.y+imageViewSize.height/2);
 }
 
+- (CGFloat)zoomScale
+{
+	return scrollView.zoomScale;
+}
+- (void)setZoomScale:(CGFloat)zoomScale
+{
+	[self setZoomScale:zoomScale animated:NO];
+}
+- (void)setZoomScale:(CGFloat)zoomScale animated:(BOOL)animated
+{
+	if(zoomScale>scrollView.maximumZoomScale)
+		zoomScale = scrollView.maximumZoomScale;
+	else if(zoomScale<scrollView.minimumZoomScale)
+		zoomScale = scrollView.minimumZoomScale;
+	[scrollView setZoomScale:zoomScale animated:animated];
+}
+
+- (BOOL)minimized
+{
+	return scrollView.zoomScale == scrollView.minimumZoomScale;
+}
+- (void)setMinimized:(BOOL)minimized
+{
+	if(minimized)
+		scrollView.zoomScale = scrollView.minimumZoomScale;
+}
+
+- (BOOL)maximized
+{
+	return scrollView.zoomScale == scrollView.maximumZoomScale;
+}
+- (void)setMaximized:(BOOL)maximized
+{
+	if(maximized)
+		scrollView.zoomScale = scrollView.maximumZoomScale;
+}
+
 - (UIView*)viewForZoomingInScrollView:(UIScrollView *)scrollView
 {
 	return imageView;

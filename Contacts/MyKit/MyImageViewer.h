@@ -12,4 +12,10 @@
 
 @property(nonatomic,strong) NSString* imagePath;
 
+@property(nonatomic) BOOL minimized;
+@property(nonatomic) BOOL maximized;
+@property(nonatomic) CGFloat zoomScale;
+
+- (void)setZoomScale:(CGFloat)zoomScale animated:(BOOL)animated;
+
 @end

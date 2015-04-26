@@ -22,8 +22,28 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-	self.edgesForExtendedLayout = 0;
-	self.title = @"查看图片";
+	UITapGestureRecognizer* tapTwice = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapTwice:)];
+	tapTwice.numberOfTapsRequired = 2;
+	[self.view addGestureRecognizer:tapTwice];
+
+	UITapGestureRecognizer* tapOnce = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapOnce:)];
+	[tapOnce requireGestureRecognizerToFail:tapTwice];
+	[self.view addGestureRecognizer:tapOnce];
+}
+
+- (void)tapOnce:(UITapGestureRecognizer*)gesture
+{
+	BOOL hidden = !self.navigationController.navigationBarHidden;
+	[self.navigationController setNavigationBarHidden:hidden animated:YES];
+//	[[UIApplication sharedApplication] setStatusBarHidden:hidden withAnimation:UIStatusBarAnimationFade];
+}
+
+- (void)tapTwice:(UITapGestureRecognizer*)gesture
+{
+	if(self.imageViewer.maximized==NO)
+		[self.imageViewer setZoomScale:999999 animated:YES];
+	else
+		[self.imageViewer setZoomScale:0 animated:YES];
 }
 
 - (MyImageViewer*)imageViewer
