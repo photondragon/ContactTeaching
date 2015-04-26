@@ -21,11 +21,14 @@
 	touchDownTime = [NSDate timeIntervalSinceReferenceDate];
 
 	touchPoint = [[touches anyObject] locationInView:self];
+
+	[self.nextResponder touchesBegan:touches withEvent:event];
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
 	moved = YES;
+	[self.nextResponder touchesMoved:touches withEvent:event];
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
@@ -47,10 +50,23 @@
 		else
 			NSLog(@"不是单击");
 	}
+	[self printResponderChain];
+
+	[self.nextResponder touchesEnded:touches withEvent:event];
 }
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
 {
+	[self.nextResponder touchesCancelled:touches withEvent:event];
+}
+
+- (void)printResponderChain
+{
+	UIResponder* responder = self;
+	while (responder) {
+		NSLog(@"%@",responder);
+		responder = responder.nextResponder;
+	}
 }
 
 @end
