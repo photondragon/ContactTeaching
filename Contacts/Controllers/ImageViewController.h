@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MyImageViewer.h"
 
 @interface ImageViewController : UIViewController
 
-@property(nonatomic,strong) NSString* imagePath;
+@property(nonatomic,strong,readonly) MyImageViewer* imageViewer;
 
 @end

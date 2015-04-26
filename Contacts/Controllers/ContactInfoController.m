@@ -62,7 +62,7 @@ UINavigationControllerDelegate>
 	else
 	{
 		ImageViewController* c = [[ImageViewController alloc] init];
-		c.imagePath = [NSString documentsPathWithFileName:self.contact.headImageUrl];
+		c.imageViewer.imagePath = [NSString documentsPathWithFileName:self.contact.headImageUrl];
 		[self.navigationController pushViewController:c animated:YES];
 	}
 }

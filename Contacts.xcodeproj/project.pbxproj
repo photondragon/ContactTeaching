@@ -20,6 +20,7 @@
 		94D6BA3D1ADA3934001C2B24 /* MyModels.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D6BA3C1ADA3934001C2B24 /* MyModels.m */; };
 		94D6BA411ADA4B70001C2B24 /* ContactNewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D6BA3F1ADA4B70001C2B24 /* ContactNewController.m */; };
 		94D6BA421ADA4B70001C2B24 /* ContactNewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94D6BA401ADA4B70001C2B24 /* ContactNewController.xib */; };
+		94D9731B1AEC91FE00B098F4 /* MyImageViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D9731A1AEC91FE00B098F4 /* MyImageViewer.m */; };
 		94FD40C31AC7AA3F003FC49A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FD40C21AC7AA3F003FC49A /* main.m */; };
 		94FD40C61AC7AA3F003FC49A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FD40C51AC7AA3F003FC49A /* AppDelegate.m */; };
 		94FD40CE1AC7AA3F003FC49A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94FD40CD1AC7AA3F003FC49A /* Images.xcassets */; };
@@ -64,6 +65,8 @@
 		94D6BA3E1ADA4B70001C2B24 /* ContactNewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactNewController.h; sourceTree = "<group>"; };
 		94D6BA3F1ADA4B70001C2B24 /* ContactNewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactNewController.m; sourceTree = "<group>"; };
 		94D6BA401ADA4B70001C2B24 /* ContactNewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactNewController.xib; sourceTree = "<group>"; };
+		94D973191AEC91FE00B098F4 /* MyImageViewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyImageViewer.h; sourceTree = "<group>"; };
+		94D9731A1AEC91FE00B098F4 /* MyImageViewer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyImageViewer.m; sourceTree = "<group>"; };
 		94FD40BD1AC7AA3F003FC49A /* Contacts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Contacts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		94FD40C11AC7AA3F003FC49A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		94FD40C21AC7AA3F003FC49A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -134,6 +137,8 @@
 			children = (
 				94C8EA131ADA22B2008B9ECA /* IDNImagePickerController.h */,
 				94C8EA141ADA22B2008B9ECA /* IDNImagePickerController.m */,
+				94D973191AEC91FE00B098F4 /* MyImageViewer.h */,
+				94D9731A1AEC91FE00B098F4 /* MyImageViewer.m */,
 			);
 			path = MyKit;
 			sourceTree = "<group>";
@@ -340,6 +345,7 @@
 				94FD40F31AC7CE29003FC49A /* ContactsController.m in Sources */,
 				94BA462E1AE3449800C4112D /* ImageViewController.m in Sources */,
 				94FD40F01AC7BC08003FC49A /* ContactInfoController.m in Sources */,
+				94D9731B1AEC91FE00B098F4 /* MyImageViewer.m in Sources */,
 				94D6BA3D1ADA3934001C2B24 /* MyModels.m in Sources */,
 				94FD40C31AC7AA3F003FC49A /* main.m in Sources */,
 				94C8EA181ADA22B2008B9ECA /* IDNImagePickerController.m in Sources */,
