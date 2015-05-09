@@ -11,6 +11,7 @@
 #import "ImageViewController.h"
 #import "IDNFoundation.h"
 #import "MyModels.h"
+#import "UIBezierPath+IDNExtend.h"
 
 @interface ContactInfoController ()
 <UIImagePickerControllerDelegate,
@@ -81,11 +82,33 @@ UINavigationControllerDelegate>
 	if(contact.headImageUrl.length)
 		self.imageViewHead.image = [UIImage imageWithContentsOfFile:[NSString documentsPathWithFileName:contact.headImageUrl]];
 	else
-		self.imageViewHead.image = [UIImage imageNamed:@"defaultHead.png"];
+		self.imageViewHead.image = [self defaultHeadImage];//[UIImage imageNamed:@"defaultHead.png"];
 
 //	self.title = contact.name;
 }
 
+- (UIImage*)defaultHeadImage
+{
+	CGSize framesize = CGSizeMake(512, 512);
+	UIGraphicsBeginImageContext(framesize);//创建一个新图像上下文
+
+	CGFloat width = framesize.width<framesize.height? framesize.width : framesize.height;
+
+	UIBezierPath* path = [UIBezierPath bezierPath];
+	[path addRect:CGRectMake((framesize.width-width)/2.0, (framesize.height-width)/2.0, width, width)];
+	[[UIColor lightGrayColor] setFill];
+	[path fill];
+	[path removeAllPoints];
+
+	[path addArcWithCenter:CGPointMake(framesize.width/2.0, framesize.height*0.42) radius:width/5.0 startAngle:0 endAngle:M_PI*2 clockwise:YES];
+	[path addArcWithCenter:CGPointMake(framesize.width/2.0, framesize.height) radius:width/2.5 startAngle:0 endAngle:M_PI*2 clockwise:YES];
+	[[UIColor grayColor] setFill];
+	[path fill];
+
+	UIImage* image = UIGraphicsGetImageFromCurrentImageContext();
+	UIGraphicsEndImageContext();
+	return image;
+}
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
 	[picker dismissViewControllerAnimated:YES completion:nil];

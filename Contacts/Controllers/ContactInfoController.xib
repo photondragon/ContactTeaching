@@ -67,10 +67,6 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wts-RS-oaC" customClass="HeadImageView">
-                    <rect key="frame" x="88" y="261" width="160" height="108"/>
-                    <color key="backgroundColor" red="0.1058823529" green="0.62352941179999999" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
-                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
