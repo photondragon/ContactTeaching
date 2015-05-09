@@ -10,6 +10,7 @@
 #import "IDNImagePickerController.h"
 #import "ImageViewController.h"
 #import "IDNFoundation.h"
+#import "MyModels.h"
 
 @interface ContactInfoController ()
 <UIImagePickerControllerDelegate,
@@ -46,6 +47,7 @@ UINavigationControllerDelegate>
 	{
 		self.contact.name = self.textFieldName.text;
 		self.contact.phone = self.textFieldPhone.text;
+		[[MyModels contactManager] contactChanged:self.contact];
 
 		self.textFieldName.enabled = NO;
 		self.textFieldPhone.enabled = NO;

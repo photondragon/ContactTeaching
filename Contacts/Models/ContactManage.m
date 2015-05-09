@@ -7,11 +7,12 @@
 //
 
 #import "ContactManage.h"
-#import "NSString+IDNExtend.h"
+#import "IDNFoundation.h"
 
 @implementation ContactManage
 {
 	NSMutableArray* contacts;
+	NSPointerArray* observers;
 }
 
 - (instancetype)init
@@ -20,9 +21,11 @@
 	if(self)
 	{
 		contacts = [[NSMutableArray alloc] init];
+		observers = [NSPointerArray weakObjectsPointerArray];
 	}
 	return self;
 }
+
 
 - (ContactInfo*)contactAtIndex:(NSUInteger)index
 {
@@ -36,11 +39,20 @@
 - (void)addContact:(ContactInfo*)contact
 {
 	[contacts addObject:contact];
+	[self notifyObserversWithChangedContact:contact];
 }
 
 - (void)delContact:(ContactInfo*)contact
 {
 	[contacts removeObjectIdenticalTo:contact];
+	[self notifyObserversWithChangedContact:contact];
+}
+
+- (void)contactChanged:(ContactInfo*)contact
+{
+	if([contacts indexOfObject:contact]==NSNotFound)
+		return;
+	[self notifyObserversWithChangedContact:contact];
 }
 
 - (NSString*)description
@@ -64,8 +76,33 @@
 	if(self)
 	{
 		contacts = [aDecoder decodeObjectForKey:@"contacts"];
+		observers = [NSPointerArray weakObjectsPointerArray];
 	}
 	return self;
+}
+
+#pragma mark Observers
+
+- (void)addContactsObserver:(id<ContactManageObserver>)observer
+{
+	if([observers containsPointer:(__bridge void *)(observer)])//已经是观察者了
+		return;
+	[observers addPointer:(__bridge void *)(observer)];
+}
+- (void)delContactsObserver:(id<ContactManageObserver>)observer
+{
+	[observers removePointerIdentically:(__bridge void *)(observer)];
+}
+- (void)notifyObserversWithChangedContact:(ContactInfo*)contact
+{
+	for (id<ContactManageObserver> observer in observers) {
+		if(observer==nil)
+			continue;
+
+		if([observer respondsToSelector:@selector(contactManager:contactUpdated:)])
+			[observer contactManager:self contactUpdated:contact];
+	}
+	[observers compact];
 }
 
 @end

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		947400861AFDCC680082C404 /* NSPointerArray+IDNExtend.m in Sources */ = {isa = PBXBuildFile; fileRef = 947400851AFDCC680082C404 /* NSPointerArray+IDNExtend.m */; };
 		94BA462E1AE3449800C4112D /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BA462D1AE3449800C4112D /* ImageViewController.m */; };
 		94BA46311AE34F8F00C4112D /* NSFileManager+IDNExtend.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BA46301AE34F8F00C4112D /* NSFileManager+IDNExtend.m */; };
 		94C8EA021ADA05CA008B9ECA /* ContactInfoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94C8EA011ADA05CA008B9ECA /* ContactInfoController.xib */; };
@@ -46,6 +47,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		947400841AFDCC680082C404 /* NSPointerArray+IDNExtend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSPointerArray+IDNExtend.h"; sourceTree = "<group>"; };
+		947400851AFDCC680082C404 /* NSPointerArray+IDNExtend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSPointerArray+IDNExtend.m"; sourceTree = "<group>"; };
 		94BA462C1AE3449700C4112D /* ImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageViewController.h; sourceTree = "<group>"; };
 		94BA462D1AE3449800C4112D /* ImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageViewController.m; sourceTree = "<group>"; };
 		94BA462F1AE34F8F00C4112D /* NSFileManager+IDNExtend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+IDNExtend.h"; sourceTree = "<group>"; };
@@ -127,6 +130,7 @@
 		94C8EA0B1ADA22B2008B9ECA /* MyFoundation */ = {
 			isa = PBXGroup;
 			children = (
+				94BA46321AE354B200C4112D /* IDNFoundation.h */,
 				94C8EA0C1ADA22B2008B9ECA /* NSData+IDNExtend.h */,
 				94C8EA0D1ADA22B2008B9ECA /* NSData+IDNExtend.m */,
 				94C8EA0E1ADA22B2008B9ECA /* NSDate+IDNExtend.h */,
@@ -135,7 +139,8 @@
 				94C8EA111ADA22B2008B9ECA /* NSString+IDNExtend.m */,
 				94BA462F1AE34F8F00C4112D /* NSFileManager+IDNExtend.h */,
 				94BA46301AE34F8F00C4112D /* NSFileManager+IDNExtend.m */,
-				94BA46321AE354B200C4112D /* IDNFoundation.h */,
+				947400841AFDCC680082C404 /* NSPointerArray+IDNExtend.h */,
+				947400851AFDCC680082C404 /* NSPointerArray+IDNExtend.m */,
 			);
 			path = MyFoundation;
 			sourceTree = "<group>";
@@ -369,6 +374,7 @@
 				94C8EA171ADA22B2008B9ECA /* NSString+IDNExtend.m in Sources */,
 				94FD40EB1AC7AA9D003FC49A /* ContactInfo.m in Sources */,
 				94D6BA411ADA4B70001C2B24 /* ContactNewController.m in Sources */,
+				947400861AFDCC680082C404 /* NSPointerArray+IDNExtend.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
