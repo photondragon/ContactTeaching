@@ -13,6 +13,7 @@
 #import "ContactNewController.h"
 #import "IDNFoundation.h"
 #import "ContactCell.h"
+#import "BreviaryController.h"
 
 @interface ContactsController ()
 <ContactManageObserver>
@@ -24,11 +25,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"相册" style:UIBarButtonItemStylePlain target:self action:@selector(showBreviary:)];
+
 	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addContact:)];
 
 	[self.tableView registerNib:[UINib nibWithNibName:@"ContactCell" bundle:nil] forCellReuseIdentifier:@"ContactCell"];
 
 	[[MyModels contactManager] addContactsObserver:self];
+}
+
+- (void)showBreviary:(id)sender
+{
+	BreviaryController* c = [[BreviaryController alloc] init];
+	[self.navigationController pushViewController:c animated:YES];
 }
 
 - (void)addContact:(id)sender
