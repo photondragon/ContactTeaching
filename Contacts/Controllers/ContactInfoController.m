@@ -20,10 +20,13 @@ UINavigationControllerDelegate>
 @property(nonatomic,weak) IBOutlet UITextField* textFieldName;
 @property (weak, nonatomic) IBOutlet UITextField *textFieldPhone;
 @property (weak, nonatomic) IBOutlet UIImageView *imageViewHead;
-
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintOfImageTop;
 @end
 
 @implementation ContactInfoController
+
+
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -38,6 +41,7 @@ UINavigationControllerDelegate>
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
 {
+	[self.view setNeedsDisplay];
 	[super setEditing:editing animated:animated];
 	if(editing)
 	{
@@ -52,6 +56,9 @@ UINavigationControllerDelegate>
 
 		self.textFieldName.enabled = NO;
 		self.textFieldPhone.enabled = NO;
+
+		if(self.contactChanged)
+			self.contactChanged(self.contact);
 	}
 }
 
@@ -92,16 +99,18 @@ UINavigationControllerDelegate>
 	CGSize framesize = CGSizeMake(512, 512);
 	UIGraphicsBeginImageContext(framesize);//创建一个新图像上下文
 
-	CGFloat width = framesize.width<framesize.height? framesize.width : framesize.height;
+	CGFloat length = framesize.width<framesize.height? framesize.width : framesize.height;
+	CGPoint topleft = CGPointMake((framesize.width-length)/2.0, (framesize.height-length)/2.0);
 
 	UIBezierPath* path = [UIBezierPath bezierPath];
-	[path addRect:CGRectMake((framesize.width-width)/2.0, (framesize.height-width)/2.0, width, width)];
+	[path addRect:CGRectMake(topleft.x, topleft.y, length, length)];
+	[path addClip];
 	[[UIColor lightGrayColor] setFill];
 	[path fill];
 	[path removeAllPoints];
 
-	[path addArcWithCenter:CGPointMake(framesize.width/2.0, framesize.height*0.42) radius:width/5.0 startAngle:0 endAngle:M_PI*2 clockwise:YES];
-	[path addArcWithCenter:CGPointMake(framesize.width/2.0, framesize.height) radius:width/2.5 startAngle:0 endAngle:M_PI*2 clockwise:YES];
+	[path addArcWithCenter:CGPointMake(framesize.width/2.0, topleft.y+length*0.42) radius:length/5.0 startAngle:0 endAngle:M_PI*2 clockwise:YES];
+	[path addArcWithCenter:CGPointMake(framesize.width/2.0, topleft.y+length) radius:length/2.5 startAngle:0 endAngle:M_PI*2 clockwise:YES];
 	[[UIColor grayColor] setFill];
 	[path fill];
 
@@ -109,6 +118,7 @@ UINavigationControllerDelegate>
 	UIGraphicsEndImageContext();
 	return image;
 }
+
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
 	[picker dismissViewControllerAnimated:YES completion:nil];

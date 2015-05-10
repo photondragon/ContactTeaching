@@ -10,4 +10,6 @@
 
 @interface HeadImageView : UIView
 
+@property(nonatomic) CGFloat scale;
+
 @end

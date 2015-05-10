@@ -78,6 +78,14 @@
 	ContactInfoController* infoController = [[ContactInfoController alloc] init];
 	infoController.contact = contact;
 
+	__weak ContactsController* weakself = self;
+	infoController.contactChanged = ^(ContactInfo* contact){
+		ContactsController* strongself = weakself;
+		if(strongself==nil)
+			return;
+		[strongself.tableView reloadData];
+	};
+
 	[self.navigationController pushViewController:infoController animated:YES];
 }
 

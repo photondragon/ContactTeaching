@@ -8,6 +8,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ContactInfoController">
             <connections>
+                <outlet property="constraintOfImageTop" destination="925-sf-f4L" id="An6-KC-ch1"/>
                 <outlet property="imageViewHead" destination="44N-th-Fyq" id="rmc-fF-R7F"/>
                 <outlet property="textFieldName" destination="zJI-DP-smH" id="lEK-If-HJW"/>
                 <outlet property="textFieldPhone" destination="JIG-zp-IDK" id="olR-5r-eCT"/>
@@ -80,7 +81,6 @@
                 <constraint firstItem="44N-th-Fyq" firstAttribute="top" secondItem="taU-SN-X00" secondAttribute="top" id="Qg6-A2-P8b"/>
                 <constraint firstItem="zJI-DP-smH" firstAttribute="centerY" secondItem="NCz-qy-EYk" secondAttribute="centerY" id="UgU-KJ-lcW"/>
                 <constraint firstItem="44N-th-Fyq" firstAttribute="leading" secondItem="Tes-rG-JuE" secondAttribute="leading" constant="20" id="Un0-jM-baQ"/>
-                <constraint firstItem="UeD-dT-YPj" firstAttribute="top" secondItem="NCz-qy-EYk" secondAttribute="bottom" constant="20" id="VqQ-JB-Ddz"/>
                 <constraint firstItem="44N-th-Fyq" firstAttribute="leading" secondItem="taU-SN-X00" secondAttribute="leading" id="ZO8-3X-hsy"/>
                 <constraint firstItem="zJI-DP-smH" firstAttribute="top" secondItem="taU-SN-X00" secondAttribute="bottom" constant="20" id="bEG-n5-Tfe"/>
                 <constraint firstItem="NCz-qy-EYk" firstAttribute="width" secondItem="UeD-dT-YPj" secondAttribute="width" id="dYv-xJ-ziJ"/>
@@ -93,11 +93,6 @@
             <nil key="simulatedStatusBarMetrics"/>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-            <variation key="default">
-                <mask key="constraints">
-                    <exclude reference="VqQ-JB-Ddz"/>
-                </mask>
-            </variation>
             <connections>
                 <action selector="blankTapped:" destination="-1" eventType="touchUpInside" id="I0w-pt-S3F"/>
             </connections>

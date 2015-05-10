@@ -10,7 +10,7 @@
 
 @interface BreviaryCell : UICollectionViewCell
 
--(void) setImagePath:(NSString*)imagefile;//设置cell要加载的图像文件
--(void) setImagePath:(NSString*)imagefile placeHolder:(UIImage*)placeHolder;//设置cell要加载的图像文件，placeHolder占位图，在图像加载过程中显示
+- (void)setImagePath:(NSString*)imagefile;//设置cell要加载的图像文件
+- (void)setImagePath:(NSString*)imagefile placeHolder:(UIImage*)placeHolder;//设置cell要加载的图像文件，placeHolder占位图，在图像加载过程中显示
 
 @end

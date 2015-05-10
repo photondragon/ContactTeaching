@@ -69,11 +69,15 @@
 	{
 		currentImageFile = imgfile;
 	}
+
 	imageView.image = placeHolder;
 	if(imgfile==nil)
 		return;
-	NSOperation* operation = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(loadImage:) object:imgfile];
-	[[MyCommon AppQueue] addOperation:operation];
+//	NSOperation* operation = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(loadImage:) object:imgfile];
+//	[[MyCommon AppQueue] addOperation:operation];
+	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{ // 1
+		[self loadImage:imgfile];
+		});
 }
 
 //后台加载指定图像。此方法在后台线程运行

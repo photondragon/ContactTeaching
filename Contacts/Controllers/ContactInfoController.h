@@ -12,5 +12,6 @@
 @interface ContactInfoController : UIViewController
 
 @property(nonatomic,strong) ContactInfo* contact;
+@property (strong, nonatomic) void (^contactChanged)(ContactInfo* contact);
 
 @end
